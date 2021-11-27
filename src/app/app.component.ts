@@ -7,7 +7,6 @@ import {AuthService} from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'music-frontend';
 
   constructor(private authService: AuthService) {
     authService.loadCurrentUser();

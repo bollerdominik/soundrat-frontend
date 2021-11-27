@@ -1,5 +1,5 @@
 {
-  "name": "music-frontend",
+  "name": "soundrat-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/music-frontend/stats-es2015.json"
+    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/soundrat-frontend/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
