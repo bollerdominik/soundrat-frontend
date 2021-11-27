@@ -1,0 +1,90 @@
+@import "../../../../../styles/variables";
+@import "../../landing-variables";
+
+:host {
+  display: block;
+}
+
+.card {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  border-radius: $border-radius;
+  overflow: hidden;
+  padding-bottom: 100%;
+
+  //.outer {
+  //  display: flex;
+  //  justify-content: center;
+  //  align-items: center;
+  //  .get-featured {
+  //    font-size: 18px;
+  //    flex: 0 0 120px;
+  //  }
+  //}
+
+}
+
+.img {
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  z-index: 1;
+  background-color: $primary-text-color;
+  font-size: 18px;
+
+  &__status {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+    font-size: 1rem;
+    color: $card-status;
+
+    .icon-fire {
+      background-image: url("../../../../../assets/images/sprites/i_fire.svg");
+      display: inline-block;
+      top: -2px;
+      width: 18px;
+      height: 18px;
+      background-size: cover;
+      margin-right: 6px;
+      filter: invert(27%) sepia(64%) saturate(2773%) hue-rotate(322deg) brightness(91%) contrast(86%);
+    }
+  }
+
+  &__title {
+    color: $card-title;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media screen and (max-width: $tablet_s - 1) {
+    &--small {
+      .footer__title {
+        line-height: 2.5;
+      }
+    }
+  }
+  @media screen and (min-width: $tablet) {
+    padding: 28px 32px;
+    font-size: 24px;
+
+    &--small {
+      font-size: 18px;
+      padding: 16px 20px;
+    }
+  }
+}

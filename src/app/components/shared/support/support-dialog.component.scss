@@ -1,0 +1,42 @@
+@import "../../../../styles/variables";
+
+.support-dialog {
+
+  .mat-display-1 {
+    margin-bottom: 38px;
+  }
+
+  .perks-title {
+    margin: 0;
+  }
+
+  .perks {
+    mat-list-item {
+      height: 46px;
+
+      .mat-list-icon {
+        padding-left: 0;
+        padding-right: 8px;
+        color: $color-light-grey;
+      }
+    }
+  }
+
+  .amount {
+    margin-top: 20px;
+
+    mat-button-toggle-group, .mat-small {
+      margin-left: 1em;
+    }
+  }
+
+  .comment {
+    width: 100%;
+    margin-top: 1em;
+  }
+
+  .button-row {
+    float: right;
+    margin-bottom: 0.5em;
+  }
+}

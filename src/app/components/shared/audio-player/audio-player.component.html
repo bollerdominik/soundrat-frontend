@@ -1,0 +1,67 @@
+<app-image class="track-avatar" *ngIf="!collection" [url]="track.coverFile | fileUrl"
+           [color]="track.coverColor"></app-image>
+<app-image class="track-avatar" *ngIf="collection" [url]="collection.coverFile | fileUrl"
+           [color]="collection.coverColor"></app-image>
+
+<div class="track-player">
+
+  <a routerLink="/{{track.userRoute}}" *ngIf="!collection">
+    <small class="mat-small artist-name">{{track.user}}</small>
+  </a>
+
+  <a routerLink="/{{collection.userRoute}}" *ngIf="collection">
+    <small class="mat-small artist-name">{{collection.user}}</small>
+  </a>
+
+  <small class="mat-small posted" *ngIf="!collection">{{track.created | dateAgo}}</small>
+  <small class="mat-small posted" *ngIf="collection">{{collection.created | dateAgo}}</small>
+  <a [routerLink]="getLink()" [state]="{ track : track, trackCollection : collection}" style="display: flex">
+    <h3 class="mat-h3 track-title">{{getTitle()}}</h3>
+    <mat-icon *ngIf="collection?.privacy == 'PRIVATE' || (!collection && track?.privacy == 'PRIVATE')"
+              class="icon-lock"
+              matTooltip="Private. Only you can view this track">
+      lock
+    </mat-icon>
+  </a>
+
+  <div class="track-controls">
+    <button class="play-icon" mat-fab aria-label="play music icon" color="primary" (click)="onPlayClicked()"
+            *ngIf="playerStatus === 'PAUSED' || playerStatus === 'INACTIVE'">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+
+    <!--    FIXME find a better way to change fab-icon size depending on screen -->
+    <button class="play-icon-small" mat-mini-fab aria-label="play music icon" color="primary" (click)="onPlayClicked()"
+            *ngIf="playerStatus === 'PAUSED' || playerStatus === 'INACTIVE'">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+
+    <button class="play-icon" mat-fab aria-label="pause music icon" color="primary" (click)="onPauseClicked()"
+            *ngIf="playerStatus === 'PLAYING'">
+      <mat-icon>pause</mat-icon>
+    </button>
+
+    <!--    FIXME find a better way to change fab-icon size depending on screen -->
+    <button class="play-icon-small"
+            mat-mini-fab aria-label="pause music icon"
+            color="primary"
+            (click)="onPauseClicked()"
+            *ngIf="playerStatus === 'PLAYING'">
+      <mat-icon>pause</mat-icon>
+    </button>
+
+    <app-waveform
+      *ngIf="soundWave$ | async as soundWave"
+      [playing]="playerStatus === 'PLAYING'"
+      [inactive]="playerStatus === 'INACTIVE'"
+      [currentTime]="currentTime"
+      [totalTime]="track.duration"
+      [waveInput]="soundWave"
+      (currentTimeChange)="onCurrentTimeChanged($event)"
+      (click)="onWaveClicked()">
+    </app-waveform>
+  </div>
+
+  <ng-content></ng-content>
+
+</div>

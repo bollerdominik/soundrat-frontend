@@ -1,0 +1,13 @@
+<ng-container *ngFor="let post of posts; let first = first;">
+  <app-audio-player *ngIf="post.track" class="post"
+                    [eagerAudioFetch]="first"
+                    [track]="post.track"
+                    [context]="context">
+  </app-audio-player>
+  <app-video-player *ngIf="post.video" class="post"
+                    [video]=post.video></app-video-player>
+  <app-collection-player *ngIf="post.trackCollection" class="post"
+                         [collection]="post.trackCollection"
+                         [context]="context">
+  </app-collection-player>
+</ng-container>

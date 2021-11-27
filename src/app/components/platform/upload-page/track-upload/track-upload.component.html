@@ -1,0 +1,68 @@
+<mat-card *ngIf="createTrackRequest">
+  <div class="progress" *ngIf="upload">
+    <small class="mat-small status" *ngIf="upload.uploadProgress == 100 && upload.progress == 100">Completed ✔️</small>
+
+    <small class="mat-small status" *ngIf="upload.uploadProgress != 100">Uploading Song</small>
+    <mat-progress-bar mode="determinate" class="progress-bar" [value]="upload.uploadProgress"
+                      *ngIf="upload.uploadProgress != 100"></mat-progress-bar>
+    <small class="mat-small status" *ngIf="upload.uploadProgress == 100 && upload.progress != 100">Processing
+      Song</small>
+    <mat-progress-bar mode="buffer" class="progress-bar" [value]="upload.progress"
+                      *ngIf="upload.uploadProgress == 100"></mat-progress-bar>
+  </div>
+  <form class="form">
+
+    <div class="cover">
+      <span class="placeholder-image" *ngIf="!image"></span>
+      <button class="avatar-button" mat-flat-button (click)="file.click()" type="button">Upload Image</button>
+      <img class="cover-artwork" *ngIf="image" [src]="image">
+      <input #file type="file"
+             id="file"
+             accept="image/*"
+             multiple
+             (change)="imageInput($event)">
+    </div>
+
+    <div class="text-input">
+      <mat-form-field class="form-row">
+        <input matInput placeholder="Title" required name="title" [(ngModel)]="createTrackRequest.title">
+        <mat-error *ngIf="formGroup.get('title').invalid">Add a title to your song</mat-error>
+      </mat-form-field>
+
+      <!--      FIXME In the future the user should be able to define the track route-->
+      <!--      <mat-form-field class="form-row">-->
+      <!--        <span matPrefix>soundrat.com/alice-rocks/</span>-->
+      <!--        <input matInput #input required disabled name="route" [(ngModel)]="createTrackRequest.trackRoute"-->
+      <!--               (focusout)="input.disabled = true">-->
+      <!--        <mat-icon matSuffix (click)="input.disabled = !input.disabled" style="cursor: pointer">mode_edit</mat-icon>-->
+      <!--      </mat-form-field>-->
+
+      <mat-form-field class="form-row">
+        <textarea matInput placeholder="Description" name="description" maxlength="250"
+                  [(ngModel)]="createTrackRequest.description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="form-row">
+        <textarea matInput placeholder="Lyrics" name="lyrics" [(ngModel)]="createTrackRequest.lyrics"
+                  maxlength="5000"></textarea>
+      </mat-form-field>
+
+      <mat-radio-group class="form-row" name="privacy" [(ngModel)]="createTrackRequest.privacy">
+        <mat-radio-button color="primary" value="PUBLIC" style="margin-right: 1em">Public</mat-radio-button>
+        <mat-radio-button color="primary" value="PRIVATE">Private</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </form>
+
+  <button class="song-button" mat-raised-button color="primary" *ngIf="trackRoute" (click)="onNewSongClicked()">
+    Saved - Your song is available here
+  </button>
+
+  <div class="actions" *ngIf="!upload?.isSaved">
+    <button mat-stroked-button color="warn" style="margin-right: 12px;" *ngIf="!upload" (click)="onDeleteTrack()">
+      Delete
+    </button>
+    <button mat-raised-button color="primary" type="submit" (click)="submitTrack()">Save</button>
+  </div>
+
+</mat-card>

@@ -1,0 +1,50 @@
+@import "../../../../../styles/variables";
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#mouse-pointer {
+  z-index: 15;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  border-right: 1px solid #abbaff;
+  pointer-events: none
+}
+
+canvas #progressCanvas {
+  z-index: 10;
+  height: 100%;
+}
+
+#progress {
+  z-index: 5;
+  overflow: hidden;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: all 250ms ease-out;
+}
+
+canvas #backgroundCanvas, #background {
+  @include fadeinAnimation;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.active {
+  filter: invert(35%) sepia(0%) saturate(1039%) hue-rotate(142deg) brightness(92%) contrast(87%);
+}
+
+.inactive {
+  filter: invert(33%) sepia(12%) saturate(8%) hue-rotate(315deg) brightness(40%) contrast(80%);
+}

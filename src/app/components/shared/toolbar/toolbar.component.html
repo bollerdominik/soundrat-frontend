@@ -1,0 +1,108 @@
+<div class="toolbar">
+  <div class="row">
+    <span><a routerLink="{{currentUser == null ? '/' : '/stream'}}">
+      <img src="../../../../assets/logo.svg" class="logo" alt="SoundRat logo">
+    </a></span>
+<!--    Fixme only used for landing page-->
+    <ul class="navigation">
+      <li class="navigation__item" *ngIf="currentUser == null">
+        <a (click)="onNavigation('forArtist')">For Artists</a>
+      </li>
+      <li class="navigation__item" *ngIf="currentUser == null">
+        <a (click)="onNavigation('forFans')">For Fans</a>
+      </li>
+      <li class="navigation__item" *ngIf="currentUser != null">
+        <a routerLink="/stream">Stream</a>
+      </li>
+      <li class="navigation__item">
+        <a routerLink="/discover">Discover Artists</a>
+      </li>
+      <li class="navigation__item">
+        <a (click)="onNavigation('feedback')">Feedback</a>
+      </li>
+    </ul>
+    <ul class="main-navigation">
+      <li class="navigation__item" *ngIf="currentUser != null">
+        <a routerLink="/stream">Stream</a>
+      </li>
+      <li class="navigation__item">
+        <a routerLink="/discover">Discover Artists</a>
+      </li>
+      <li class="navigation__item">
+        <a routerLink="/">About Us</a>
+      </li>
+    </ul>
+    <div class="right-options">
+      <button mat-stroked-button class="upload-button" routerLink="/upload">
+        <mat-icon class="button-icon">add</mat-icon>
+        Upload
+      </button>
+      <button mat-stroked-button routerLink="/login" *ngIf="!currentUser">
+        <mat-icon class="button-icon">person</mat-icon>
+        Sign in
+      </button>
+      <button class="current-user" mat-flat-button *ngIf="currentUser" [matMenuTriggerFor]="currentUserMenu">
+        <app-user-avatar [size]="36" [user]="currentUser"></app-user-avatar>
+        {{currentUser.name}}
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #currentUserMenu="matMenu">
+        <button mat-menu-item *ngIf="showInstallButton" (click)="addToHomeScreen()">
+          <mat-icon>install_mobile</mat-icon>
+          <span>Install App</span>
+        </button>
+        <button mat-menu-item routerLink="/upload" class="mobile-menu-item">
+          <mat-icon>add</mat-icon>
+          <span>Upload</span>
+        </button>
+        <button mat-menu-item routerLink="/stream" class="mobile-menu-item" *ngIf="currentUser != null">
+          <mat-icon>queue_music</mat-icon>
+          <span>Stream</span>
+        </button>
+        <button mat-menu-item [routerLink]="currentUser.userRoute" *ngIf="currentUser">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item routerLink="/dashboard">
+          <mat-icon>storefront</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        <button mat-menu-item routerLink="/supporting">
+          <mat-icon>attach_money</mat-icon>
+          <span>Supporting</span>
+        </button>
+        <button mat-menu-item routerLink="/verify">
+          <mat-icon>verified_user</mat-icon>
+          <span>Get Verified</span>
+        </button>
+        <button mat-menu-item routerLink="/" class="mobile-menu-item">
+          <mat-icon>info</mat-icon>
+          <span>About us</span>
+        </button>
+        <button mat-menu-item (click)="clickLogout()">
+          <mat-icon>clear</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+
+      <button mat-icon-button *ngIf="!currentUser" class="menu-button" [matMenuTriggerFor]="smallScreenMenuNotLoggedIn">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #smallScreenMenuNotLoggedIn>
+        <button mat-menu-item *ngIf="showInstallButton" (click)="addToHomeScreen()">
+          <mat-icon>install_mobile</mat-icon>
+          <span>Install App</span>
+        </button>
+        <button mat-menu-item routerLink="/register">
+          <mat-icon>person</mat-icon>
+          <span>Register</span>
+        </button>
+        <button mat-menu-item routerLink="/upload">
+          <mat-icon>add</mat-icon>
+          <span>Upload</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,18 @@
+<h1 class="mat-display-1 title">🏆 Artists you support</h1>
+
+<ng-container *ngIf="(subscriptions$ | async) as subscriptions">
+  <div *ngIf="subscriptions.length == 0">
+    <p class="mat-small">You are not currently supporting any artists</p>
+  </div>
+  <mat-card *ngFor="let subscription of subscriptions" class="card-shadow mat-elevation-z3">
+    <img [src]="subscription.artist.avatarFile | fileUrl" class="avatar">
+    <div>
+      <h2 class="mat-h2">{{subscription.artist.name}}</h2>
+      <p class="mat-small">Next payment on {{subscription.nextBill | date: 'longDate'}}</p>
+      <h3 class="mat-h3">Supporting for ${{subscription.amount / 100}} per month</h3>
+    </div>
+    <button class="cancel-button" mat-stroked-button color="primary"
+            (click)="onCancelClicked(subscription.id)">Cancel Subscription</button>
+  </mat-card>
+
+</ng-container>

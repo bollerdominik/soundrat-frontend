@@ -1,0 +1,80 @@
+@import "../../../../styles/variables";
+
+@media screen and (max-width: 577px) {
+  :host {
+    display: block;
+    margin: auto;
+  }
+  .artist {
+    display: flex;
+    margin: auto;
+    width: 100% !important;
+  }
+  .artist-buttons {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+
+    .support-button {
+      width: 130px !important;
+      height: 40px !important;
+      margin-bottom: 20px !important;
+    }
+
+    .follow-button {
+      width: 130px !important;
+      height: 40px !important;
+    }
+  }
+
+}
+
+.artist {
+  padding-right: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  width: 200px;
+
+  .mat-h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .verified-icon {
+      color: $primary;
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    :hover {
+      color: $primary;
+      text-shadow: 0 0 10px $primary;
+    }
+  }
+
+  .artist-buttons {
+    .support-button {
+      width: 90px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .follow-button {
+      width: 90px;
+    }
+  }
+
+  app-user-avatar {
+    display: inline-block;
+  }
+}
+
+.following {
+  background-color: rgba($primary, 0.2);
+  font-size: 13px;
+}

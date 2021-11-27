@@ -1,0 +1,20 @@
+@import "../../../../styles/variables";
+
+@include resize-player;
+
+.header {
+  margin: -1em;
+  padding: 1em;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+
+.container {
+  width: 100%;
+  max-width: 750px;
+  min-width: 330px;
+}

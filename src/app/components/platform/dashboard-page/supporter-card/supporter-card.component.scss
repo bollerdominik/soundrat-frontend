@@ -1,0 +1,39 @@
+mat-card {
+
+  app-user-avatar {
+    margin-right: 1em;
+  }
+
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+
+    .message-button {
+      margin-left: auto;
+      margin-top: auto;
+      margin-bottom: auto;
+      height: 50px;
+    }
+  }
+
+  .messages {
+
+    .msg {
+      display: flex;
+
+      .msg-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .name {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}

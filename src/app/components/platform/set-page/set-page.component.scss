@@ -1,0 +1,39 @@
+@import "../../../../styles/variables";
+
+.header {
+  margin: -1em;
+  padding: 1em;
+}
+
+
+app-collection-player::ng-deep {
+  @include resize-player;
+
+  mat-list {
+    padding-left: 200px;
+
+    @media screen and (max-width: 549px) {
+      padding-left: 0;
+      width: 100%;
+
+      mat-list-item {
+        .mat-list-item-content {
+          padding-left: 4px !important;
+        }
+      }
+    }
+  }
+}
+
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+
+.container {
+  width: 100%;
+  max-width: 750px;
+  min-width: 330px;
+}

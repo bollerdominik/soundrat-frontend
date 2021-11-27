@@ -1,0 +1,32 @@
+<section class="header" *ngIf="track"
+         [style.background]="track.coverColor | colorGradient">
+  <app-audio-player [track]="track"
+                    [context]="TRACK_CONTEXT"
+                    [eagerAudioFetch]="true">
+    <app-track-options [showEdit]="canEdit"
+                       [liked]="liked"
+                       (likeClicked)="onLikeClicked($event)"
+                       (downloadClicked)="onDownloadButtonClicked()"
+                       (editClicked)="onEditTrackClicked()"
+    ></app-track-options>
+  </app-audio-player>
+</section>
+
+<mat-divider style="margin-top: 26px"></mat-divider>
+
+<section class="content" *ngIf="user">
+
+  <app-artist [user]="user"></app-artist>
+
+  <div class="container">
+    <app-lyrics [track]="track"></app-lyrics>
+
+    <div class="comment-container">
+      <app-comments *ngIf="comments$ | async as comments" [comments]="comments"></app-comments>
+      <app-comment-create [user]="user" [track]="track"
+                          (reloadCommentChange)="loadComments(track)"></app-comment-create>
+    </div>
+
+  </div>
+
+</section>

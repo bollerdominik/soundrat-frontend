@@ -1,0 +1,54 @@
+<mat-dialog-content class="support-dialog">
+
+  <ng-container *ngIf="!waitingForPayment">
+    <h1 class="mat-display-1">Support {{artist.name}}</h1>
+    <h2 class="mat-h2 perks-title">Directly support the artist and gain access to</h2>
+    <mat-list class="perks">
+      <mat-list-item>
+        <mat-icon mat-list-icon>save_alt</mat-icon>
+        Download Songs
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>high_quality</mat-icon>
+        High Quality Streaming
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>info</mat-icon>
+        Lyrics
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>comment</mat-icon>
+        Comment On Songs & Albums
+      </mat-list-item>
+    </mat-list>
+
+    <div class="amount">
+      <h2 class="mat-h2">Monthly amount to support</h2>
+      <mat-button-toggle-group #group="matButtonToggleGroup" value="1000" (change)="amount = group.value">
+        <mat-button-toggle value="500">$5</mat-button-toggle>
+        <mat-button-toggle value="1000">$10</mat-button-toggle>
+        <mat-button-toggle value="2000">$20</mat-button-toggle>
+        <mat-button-toggle value="5000">$50</mat-button-toggle>
+        <mat-button-toggle value="10000">$100</mat-button-toggle>
+      </mat-button-toggle-group>
+      <p class="mat-small">Subscription can be cancelled at any time from your profile</p>
+    </div>
+
+    <mat-form-field class="comment">
+      <mat-label>Send a message to {{artist.name}}</mat-label>
+      <textarea matInput [(ngModel)]="message"></textarea>
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngIf="waitingForPayment">
+    <h2 class="mat-h2">Please complete payment in new page</h2>
+    <mat-spinner style="margin: auto"></mat-spinner>
+  </ng-container>
+
+
+  <div class="button-row" mat-dialog-actions>
+    <button mat-button (click)="clickCancel()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="waitingForPayment" (click)="clickPay()">Pay</button>
+  </div>
+
+</mat-dialog-content>

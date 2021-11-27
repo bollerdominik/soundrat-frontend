@@ -1,0 +1,95 @@
+<audio #audioElement></audio>
+
+<ng-container *ngIf="track">
+
+  <ng-container *ngIf="isSmallScreen()">
+
+    <!--    <div class="toolbar-top" *ngIf="expandedTopToolbar; else progressBar">-->
+    <!--      <p class="mat-small">{{getCurrentSeconds() | date:'mm:ss'}}</p>-->
+    <!--      <mat-slider class="toolbar-top-slider"-->
+    <!--                  color="primary"-->
+    <!--                  [value]="getProgress()"-->
+    <!--                  (change)="onProgressChanged($event.value)">-->
+    <!--      </mat-slider>-->
+    <!--      <p class="mat-small">{{getTotalTime() | date:'mm:ss'}}</p>-->
+    <!--    </div>-->
+
+    <!--    <ng-template #progressBar>-->
+    <mat-progress-bar class="border-progress-bar"
+                      mode="determinate"
+                      color="primary"
+                      [value]="getProgress()">
+    </mat-progress-bar>
+    <!--    </ng-template>-->
+
+  </ng-container>
+
+
+  <div class="toolbar">
+    <div class="toolbar-container">
+
+      <button mat-icon-button
+              aria-label="Previous Track"
+              (click)="onPlayPreviousClicked()">
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+
+      <button mat-icon-button
+              aria-label="Play Track"
+              *ngIf="!isPlaying()"
+              (click)="onPlayClicked()">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+
+      <button mat-icon-button
+              aria-label="Pause Track"
+              *ngIf="isPlaying()"
+              (click)="onPauseClicked()">
+        <mat-icon>pause</mat-icon>
+      </button>
+
+      <button mat-icon-button
+              aria-label="Next Track"
+              (click)="onPlayNextClicked()">
+        <mat-icon>skip_next</mat-icon>
+      </button>
+
+      <p class="mat-small timestamp">{{getCurrentSeconds() | date:'mm:ss'}}</p>
+
+      <mat-slider class="progress-slider"
+                  color="primary"
+                  [value]="getProgress()"
+                  (input)="onProgressChanged($event.value)">
+      </mat-slider>
+
+      <p class="mat-small timestamp">{{getTotalTime() | date:'mm:ss'}}</p>
+
+      <div class="volume">
+        <mat-slider class="volume-slider" vertical thumbLabel
+                    color="primary"
+                    *ngIf="showVolumeSlider"
+                    [value]="audioElement.volume * 100"
+                    (change)="onVolumeChanged($event)">
+        </mat-slider>
+        <button mat-icon-button
+                aria-label="Volume"
+                (click)="showVolumeSlider=!showVolumeSlider">
+          <mat-icon>volume_up</mat-icon>
+        </button>
+      </div>
+
+      <div class="playing-track">
+        <img class="track-avatar small-image" alt="Track Avatar" [src]="track.coverFile | fileUrl"
+             [routerLink]="[track.userRoute, track.trackRoute]"
+             [state]="{track: track}">
+        <div class="track-detail">
+          <p [routerLink]="track.userRoute" class="mat-small">{{track.user}}</p>
+          <p class="mat-small title"
+             [routerLink]="[track.userRoute, track.trackRoute]"
+             [state]="{track: track}"
+          >{{track.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

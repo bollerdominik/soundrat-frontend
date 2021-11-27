@@ -1,0 +1,79 @@
+<section class="header" *ngIf="user" [style.background]="user.avatarColor | colorGradient">
+  <app-user-avatar [size]="200" [user]="user"></app-user-avatar>
+  <article>
+    <h1 class="mat-display-1 user-title">{{ user.name }}
+      <mat-icon *ngIf="user.verified" class="verified-icon" matTooltip="Verified Artist">verified</mat-icon>
+    </h1>
+    <h2 class="mat-h2">{{ user.description }}</h2>
+  </article>
+
+</section>
+
+<section class="content">
+
+  <mat-tab-group class="posts" *ngIf="(posts$ | async) as posts">
+
+    <mat-tab label="All">
+      <ng-template matTabContent>
+        <div class="tab-container">
+          <app-posts [posts]="posts"></app-posts>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Tracks">
+      <ng-template matTabContent>
+        <div class="tab-container">
+          <ng-container *ngFor="let post of posts | postFilter: 'track'">
+            <app-audio-player class="post"
+                              [track]="post.track"
+                              [context]="ALL_TRACKS_CONTEXT">
+            </app-audio-player>
+          </ng-container>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Albums">
+      <ng-template matTabContent>
+        <div class="tab-container">
+          <ng-container *ngFor="let post of posts | postFilter: 'trackCollection'">
+            <app-collection-player class="post"
+                                   [collection]="post.trackCollection"
+                                   [context]="ALL_COLLECTIONS_CONTEXT">
+            </app-collection-player>
+          </ng-container>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+
+  <div class="stats">
+    <button class="edit-button" mat-stroked-button *ngIf="canEdit" (click)="onEditButtonClicked()">Edit Profile</button>
+
+    <button mat-stroked-button color="primary" [class.following]=following class="support-button"
+            (click)="onFollowClicked()">
+      {{following ? "Following" : "Follow"}}
+    </button>
+    <button mat-raised-button color="primary" class="follow-button" (click)="onSupportClicked()">Support</button>
+
+    <app-social-media-links *ngIf="socialMediaLinks && socialMediaLinks.length > 0"
+                            [socialMediaLinks]="socialMediaLinks">
+    </app-social-media-links>
+
+    <div class="supporters" *ngIf="(supporters$ | async) as supporters">
+      <h5 class="mat-small" *ngIf="supporters.length > 0">Supported by</h5>
+      <div class="avatars" *ngIf="supporters.length > 0">
+        <app-user-avatar *ngFor="let supporter of supporters"
+                         [matTooltip]="supporter.name"
+                         class="thumb"
+                         [size]="28"
+                         [user]="supporter"
+        ></app-user-avatar>
+      </div>
+    </div>
+  </div>
+
+
+</section>

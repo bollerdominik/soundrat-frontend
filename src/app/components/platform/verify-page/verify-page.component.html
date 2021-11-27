@@ -1,0 +1,78 @@
+<ng-container *ngIf="verification?.active == true">
+  <h1 class="mat-display-1">✔️ Account is verified</h1>
+
+  <ng-container *ngIf="verification.payoutType == 'BANK'">
+    <h2 class="mat-h2">You will receive payments directly to your bank through Stripe</h2>
+    <button mat-stroked-button (click)="onEditBankClicked()">Edit your bank information</button>
+  </ng-container>
+
+  <ng-container *ngIf="verification.payoutType == 'PAYPAL'">
+    <h2 class="mat-h2">You will receive payments through PayPal once a week</h2>
+  </ng-container>
+
+  <button mat-stroked-button (click)="edit = true">Edit your payout settings</button>
+
+</ng-container>
+
+<ng-container *ngIf="edit || !verification?.active == true">
+  <h1 class="mat-display-1" *ngIf="!edit">💸 Verify your profile</h1>
+  <h3 class="mat-h2" *ngIf="!edit">Add your information and receive payments from your fans</h3>
+
+  <mat-card>
+    <form [formGroup]="formGroup">
+      <mat-card-content>
+        <mat-form-field class="form-row">
+          <input matInput required type="text" placeholder="Full Name" formControlName="name">
+        </mat-form-field>
+
+        <mat-radio-group formControlName="payout" aria-label="Select an option" required
+                         (change)="onPayoutTypeChange($event)">
+          <mat-radio-button color="primary" value="PAYPAL" [disabled]="verification?.payoutType == 'BANK' && !edit">
+            PayPal
+          </mat-radio-button>
+          <mat-radio-button color="primary" value="BANK">Bank Account</mat-radio-button>
+        </mat-radio-group>
+
+        <ng-container *ngIf="formGroup.value['payout'] == 'PAYPAL'">
+          <mat-form-field class="form-row">
+            <mat-label>PayPal Email</mat-label>
+            <input matInput formControlName="paypalEmail" required>
+          </mat-form-field>
+          <small class="mat-small">PayPal payments will be payed out once a week</small>
+        </ng-container>
+
+        <ng-container *ngIf="formGroup.value['payout'] == 'BANK'">
+          <div class="form-row button-container">
+            <div class="spinner-container" *ngIf="waitingForBank">
+              <mat-spinner diameter="24"></mat-spinner>
+            </div>
+            <button class="form-row bank-button" mat-raised-button
+                    #button
+                    [disabled]="waitingForBank || verification?.payoutType == 'BANK'"
+                    (click)="onBankClicked(button._elementRef.nativeElement)">
+              <ng-container *ngIf="verification?.payoutType == 'BANK'">Bank account verified ✔️</ng-container>
+              <ng-container *ngIf="verification?.payoutType != 'BANK'">Receive payments to your bank</ng-container>
+            </button>
+          </div>
+          <small class="mat-small">Setup direct payments to your bank account.
+            <a (click)="onBankInfoClicked()" style="text-decoration: underline">Click here</a> for more
+            information</small>
+        </ng-container>
+
+        <div class="confirm" *ngIf="formGroup.value['payout']">
+          <mat-checkbox color="primary" formControlName="correct" required>I confirm the provided information is
+            correct
+          </mat-checkbox>
+          <mat-checkbox color="primary" formControlName="accept" required>I accept the SoundRat <a routerLink="/terms">terms
+            and conditions</a>
+          </mat-checkbox>
+        </div>
+      </mat-card-content>
+
+      <button mat-raised-button color="primary" class="form-row" type="submit" (click)="onSubmitButtonClicked()">
+        Submit verification
+      </button>
+
+    </form>
+  </mat-card>
+</ng-container>

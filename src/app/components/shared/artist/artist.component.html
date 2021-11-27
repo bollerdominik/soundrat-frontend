@@ -1,0 +1,15 @@
+<div class="artist">
+  <a routerLink="/{{user.userRoute}}" [state]="{user: user}">
+    <app-user-avatar [user]="user" [size]="100"></app-user-avatar>
+    <h4 class="mat-h4">{{user.name}}
+      <mat-icon *ngIf="user.verified" class="verified-icon" matTooltip="Verified Artist" >verified</mat-icon>
+    </h4>
+  </a>
+  <div class="artist-buttons">
+    <button mat-raised-button color="primary" class="support-button" (click)="onSupportClicked()">Support</button>
+    <button mat-stroked-button color="primary" [class.following]=following class="support-button"
+            (click)="onFollowClicked()">
+      {{following ? "Following" : "Follow"}}
+    </button>
+  </div>
+</div>

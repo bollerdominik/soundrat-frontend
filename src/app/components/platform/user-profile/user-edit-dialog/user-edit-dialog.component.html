@@ -1,0 +1,56 @@
+<div class="dialog" *ngIf="user && !uploadingImage">
+
+  <button class="form-row secondary-button" mat-stroked-button
+          [disabled]="image != null"
+          (click)="file.click()">{{image ? '✔️ New avatar selected' : 'Add or change profile picture'}}</button>
+  <input #file type="file"
+         style="display: none"
+         id="file"
+         accept="image/*"
+         multiple
+         (change)="setImage($event)">
+
+  <mat-form-field class="form-row">
+    <input maxLength="25" matInput required type="text" placeholder="Display name" [(ngModel)]="user.name">
+  </mat-form-field>
+  <mat-form-field class="form-row">
+    <input maxlength="150" matInput type="text" placeholder="Profile description" [(ngModel)]="user.description">
+  </mat-form-field>
+
+  <table class="form-row" cellspacing="0">
+    <tr *ngFor="let socialMedia of socialMediaLinks">
+      <td>
+        <mat-form-field class="social-media-options">
+          <mat-select [(ngModel)]="socialMedia.website" (ngModelChange)="onSocialMediaChanged(socialMedia)">
+            <mat-option value="INSTAGRAM">Instagram</mat-option>
+            <mat-option value="YOUTUBE">YouTube</mat-option>
+            <mat-option value="TWITTER">Twitter</mat-option>
+            <mat-option value="FACEBOOK">Facebook</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="form-row">
+          <mat-label>Link</mat-label>
+          <input [(ngModel)]="socialMedia.url" matInput (ngModelChange)="onSocialMediaChanged(socialMedia)">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onRemoveSocialMediaClicked(socialMedia)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <small *ngIf="socialMediaError" class="mat-small error-field">Not a valid social media link</small>
+
+  <button class="form-row secondary-button" mat-stroked-button (click)="onAddSocialMediaClicked()">
+    Add another social media link
+  </button>
+
+  <button class="form-row" mat-raised-button color="primary" (click)="onSaveClicked()">Save changes</button>
+</div>
+
+<div *ngIf="uploadingImage">
+  <h3 class="mat-h3">Saving changes</h3>
+  <mat-spinner></mat-spinner>
+</div>

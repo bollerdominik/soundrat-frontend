@@ -1,0 +1,33 @@
+<mat-card class="card-shadow mat-elevation-z2">
+  <div class="main">
+    <app-user-avatar [size]="100" [user]="subscription.supporter"></app-user-avatar>
+    <div>
+      <h2 class="mat-h2">{{subscription.supporter.name}}</h2>
+      <p class="mat-small">Since {{subscription.created | date: 'longDate'}} -
+        Next payment on {{subscription.nextBill | date: 'longDate'}}</p>
+      <h3 class="mat-h3">Supporting you for ${{subscription.amount / 100}} per month</h3>
+    </div>
+    <button class="message-button" mat-stroked-button (click)="onMessagesClicked()">
+      <mat-icon>message</mat-icon>
+      Message {{subscription.supporter.name}}</button>
+  </div>
+  <div class="messages" *ngIf="showMessages">
+
+
+    <div class="msg" *ngFor="let message of messages">
+      <app-user-avatar [size]="40" [user]="message.user"></app-user-avatar>
+      <div class="msg-text">
+        <p class="name">{{message.user.name}}</p>
+        <h4 class="mat-h4 msg-text">{{message.message}}</h4>
+      </div>
+    </div>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Message to {{subscription.supporter.name}}</mat-label>
+      <textarea #textAreaElement matInput></textarea>
+    </mat-form-field>
+    <button mat-button class="submit-button" (click)="onSubmitMessageClicked(textAreaElement)">Submit</button>
+
+  </div>
+</mat-card>
+

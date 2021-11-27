@@ -1,0 +1,13 @@
+<app-toolbar [ngClass]="{'landing' : isLandingPage()}"></app-toolbar>
+
+
+<div class="main-container" *ngIf="!isLandingPage(); else elseBlock">
+  <div class="inner-main">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <router-outlet></router-outlet>
+</ng-template>
+
+<app-footer-player class="footer-player"></app-footer-player>

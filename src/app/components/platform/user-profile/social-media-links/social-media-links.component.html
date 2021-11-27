@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let socialMedia of socialMediaLinks">
+    <a [href]="socialMedia.url" class="social" target="_blank">
+      <span class="social-icon social-{{socialMedia.website | lowercase}}"></span>
+      <small class="mat-small">{{socialMedia.website | titlecase}}</small>
+    </a>
+  </li>
+</ul>

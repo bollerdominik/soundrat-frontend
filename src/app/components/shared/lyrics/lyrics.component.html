@@ -1,0 +1,6 @@
+<mat-card class="lyrics" *ngIf="track && track.lyrics">
+  <p class="mat-h4" [class.collapsed]="collapsed" [innerHTML]="track.lyrics">
+  </p>
+  <div class="fade" *ngIf="collapsed"></div>
+  <button mat-stroked-button (click)="collapsed = !collapsed">{{collapsed ? 'Show' : 'Hide'}} Lyrics</button>
+</mat-card>

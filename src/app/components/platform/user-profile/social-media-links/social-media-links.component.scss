@@ -1,0 +1,27 @@
+.social {
+  display: flex;
+
+  .social-icon {
+    margin-right: 4px;
+    margin-top: 1px;
+    width: 15px;
+    display: block;
+    height: 15px;
+  }
+
+  .social-twitter {
+    background-image: url("../../../../../assets/social/twitter.svg");
+  }
+
+  .social-instagram {
+    background-image: url("../../../../../assets/social/instagram.svg");
+  }
+
+  .social-facebook {
+    background-image: url("../../../../../assets/social/facebook.svg");
+  }
+
+  .social-youtube {
+    background-image: url("../../../../../assets/social/youtube.svg");
+  }
+}

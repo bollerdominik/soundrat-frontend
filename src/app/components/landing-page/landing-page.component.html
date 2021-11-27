@@ -1,0 +1,180 @@
+<div class="wrap">
+  <section class="start-screen">
+    <div class="container">
+      <header class="main-header" [ngClass]="{'active': isVisibleNav}">
+      </header>
+
+      <div class="promo">
+        <div class="promo__text">
+          <h1 class="title main-title main-title--shadow">
+            {{ DICTIONARY.sections.promoTitle_1 }}<br>
+            <span class="nowrap">{{ DICTIONARY.sections.promoTitle_2 }}</span><br>
+            {{ DICTIONARY.sections.promoTitle_3 }}
+          </h1>
+          <p class="description">{{ DICTIONARY.sections.promoText }}</p>
+          <button mat-flat-button class="btn btn--accent action-btn uppercase"
+                  routerLink="/discover"
+                  color="primary">{{ DICTIONARY.common.getStarted }}</button>
+        </div>
+        <div class="promo__img">
+          <img src="assets/images/promo.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-gradient">
+
+    <section id="discover-page" class="for-fans discover-section animated" data-offset="300">
+      <div class="container discover-container">
+        <app-discover-page [miniMode]="true"></app-discover-page>
+
+      </div>
+
+    </section>
+
+    <div class="wave-divider_1">
+      <div class="img-wrap">
+        <img src="assets/images/wave.svg" alt="">
+      </div>
+    </div>
+
+    <section id="{{ nav[0].link }}" class="for-artist animated" data-offset="300">
+      <div class="container">
+        <h2 class="main-title">{{ DICTIONARY.sections.forArtist }}</h2>
+        <ul class="features features--inline">
+          <li class="features__item feature" *ngFor="let item of forArtistArr">
+            <img class="feature__icon" src="assets/images/{{ item.icon }}.png" alt="">
+            <h3 class="feature__title">{{ item.title }}</h3>
+            <p class="feature__text">{{ item.text }}</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+
+    <section id="{{ nav[1].link }}" class="for-fans animated" data-offset="150">
+      <div class="container for-fans__wrap">
+        <h2 class="main-title">{{ DICTIONARY.sections.forFans }}</h2>
+        <ul class="features">
+          <li class="features__item feature" *ngFor="let item of forFAnsArr">
+            <img class="feature__icon" src="assets/images/{{ item.icon }}.png" alt="">
+            <div>
+              <h3 class="feature__title">{{ item.title }}</h3>
+              <p class="feature__text">{{ item.text }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="newest-artists-section animated" data-offset="200">
+    <div class="container">
+      <h2 class="main-title">{{ DICTIONARY.sections.newestArtists }}</h2>
+      <div class="newest-artists">
+        <div class="newest-artists-grid">
+          <app-card
+            [routerLink]="item.title ? item.route : '/register'"
+            *ngFor="let item of cards; let i = index" [class]="'card g_'+(i+1)" [data]="item"></app-card>
+        </div>
+        <button mat-flat-button class="btn btn--accent uppercase newest-artists__btn"
+                routerLink="discover"
+                color="primary">{{ DICTIONARY.common.listenNow }}</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave-divider_2">
+    <div class="img-wrap">
+      <img src="assets/images/wave.svg" alt="">
+    </div>
+  </div>
+
+  <section id="{{ nav[2].link }}" class="feedback animated" data-offset="300">
+    <div class="container">
+      <div class="form">
+        <div class="b-1">
+          <h3 class="form__title">Your opinion matters</h3>
+          <p class="form__description feedback__desc">We are a new startup with the the goal of making
+            a great music streaming platform for independent artists.
+            <br>
+            <br>
+            Let us know what you would like to see and help us become better!
+          </p>
+          <button mat-stroked-button class="btn btn--filled form-btn"
+                  [disabled]="sendFeedback"
+                  type="button"
+                  (click)="onSendFeedbackClicked(name.value, email.value, message.value)">
+            <ng-container *ngIf="!sendFeedback; else elseBlock">
+              <mat-icon class="btn__send mr-05">send</mat-icon>
+              Send
+            </ng-container>
+            <ng-template #elseBlock>
+              <mat-icon class="btn__send mr-05">done</mat-icon>
+              Feedback received
+            </ng-template>
+          </button>
+        </div>
+
+        <form class="form__inputs">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput #name>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput #email>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Message</mat-label>
+            <textarea matInput #message></textarea>
+          </mat-form-field>
+
+          <button mat-stroked-button class="btn btn--filled form-btn"
+                  type="button"
+                  [disabled]="sendFeedback"
+                  (click)="onSendFeedbackClicked(name.value, email.value, message.value)">
+            <ng-container *ngIf="!sendFeedback; else elseBlock">
+              <mat-icon class="btn__send mr-05">send</mat-icon>
+              Send
+            </ng-container>
+            <ng-template #elseBlock>
+              <mat-icon class="btn__send mr-05">done</mat-icon>
+              Feedback received
+            </ng-template>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="contact animated" data-offset="150">
+    <div class="container">
+      <div class="main-footer">
+        <ul class="main-footer__navigation">
+          <li *ngFor="let item of nav">
+            <a (click)="goTo(item.link)">{{ item.label }}</a>
+          </li>
+          <li>
+            <a routerLink="discover">Discover artists</a>
+          </li>
+          <li>
+            <a routerLink="terms">{{ DICTIONARY.common.terms }}</a>
+          </li>
+        </ul>
+        <div class="main-footer__copyright copyright">
+          <a href="#" class="copyright__logo">
+            <img src="assets/logo.svg" alt="SoundRat logo">
+          </a>
+          <p class="copyright__text">© 2020 SoundRat</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>

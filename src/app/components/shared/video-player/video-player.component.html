@@ -1,0 +1,11 @@
+<app-image class="track-avatar" [url]="video.coverFile | fileUrl" [color]="color"></app-image>
+
+<div class="track-player">
+
+  <a routerLink="/{{video.userRoute}}">
+    <small class="mat-small artist-name">{{video.user}}</small>
+  </a>
+
+  <small class="mat-small" style="float: right">{{video.created | dateAgo}}</small>
+  <youtube-player #player [videoId]="video.youtubeId" (stateChange)="onStateChange($event)"></youtube-player>
+</div>

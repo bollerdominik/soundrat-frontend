@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <title>Soundrat - Initialize Payment</title>
+</head>
+<body>
+<script src="https://js.stripe.com/v3"></script>
+
+<p>Loading payment page....</p>
+
+<div id="error-message"></div>
+
+<script>
+  (function () {
+
+
+    const urlParams = new URLSearchParams(window.location.search);
+    var sessionId = urlParams.get('sessionId');
+    if (!sessionId) {
+      return;
+    }
+
+    var accountId = urlParams.get('accountId');
+    if (accountId === 'na') {
+      accountId = '';
+    }
+
+    var stripe = Stripe('pk_live_K0zRwiXF1xtBp0pk2mjxXdyk00LzzItbLe',
+      {stripeAccount: accountId}
+    );
+
+    stripe.redirectToCheckout({
+      sessionId: sessionId
+    })
+      .then(function (result) {
+        if (result.error) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, display the localized error message to your customer.
+          var displayError = document.getElementById('error-message');
+          alert(result.error.message);
+          displayError.textContent = result.error.message;
+        }
+      });
+  })();
+</script>
+
+</body>
+</html>

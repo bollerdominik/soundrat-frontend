@@ -1,0 +1,70 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.track-avatar {
+  width: 100px;
+  height: 100px;
+}
+
+.track-title {
+  margin: 0;
+}
+
+.track-player {
+  flex: 1;
+  padding-left: 1em;
+}
+
+.play-icon {
+  margin-right: 1em;
+}
+
+.play-icon-small {
+  display: none;
+}
+
+.progress-bar {
+  flex-grow: 1;
+}
+
+.track-controls {
+ display: flex;
+}
+
+.posted {
+  float: right;
+}
+
+app-waveform {
+  width: 100%;
+}
+
+.icon-lock {
+  margin-left: auto;
+  font-size: 20px;
+  line-height: 32px;
+  color: #e91e63;
+}
+
+@media screen and (max-width: 400px) {
+  .progress-bar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .play-icon-small {
+    display: unset;
+    margin-right: 1em;
+  }
+
+  .track-controls {
+    padding-top: 6px;
+  }
+
+  .play-icon {
+    display: none;
+  }
+}

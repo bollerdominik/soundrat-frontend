@@ -1,0 +1,38 @@
+<app-alert *ngIf="from">
+  Please login to perform this action
+</app-alert>
+
+<mat-card class="centered-card">
+  <h2 class="mat-h2">Login</h2>
+
+  <form [formGroup]="formGroup">
+    <mat-card-content>
+      <mat-form-field class="form-row" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required placeholder="your@email.com">
+        <mat-error *ngIf="formGroup.get('email').invalid">{{getEmailError()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-row" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput required type="password" formControlName="password">
+      </mat-form-field>
+    </mat-card-content>
+    <button mat-raised-button color="primary" class="form-row" (click)="login()" type="submit">Log in</button>
+    <div class="form-hint">
+      <small class="mat-small">Forgot password?
+        <a routerLink="/login/request-reset">Reset your password here</a>
+      </small>
+    </div>
+
+    <div class="card-divider">
+      <div></div>
+      <p class="mat-small">Not on SoundRat yet?</p>
+      <div></div>
+    </div>
+
+    <button style="width: 100%" mat-button type="button" routerLink="/register" queryParamsHandling="preserve">
+      Register
+    </button>
+  </form>
+</mat-card>

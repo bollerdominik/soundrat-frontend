@@ -1,0 +1,42 @@
+@import "../../../../styles/variables";
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+app-audio-player {
+  width: 100%;
+}
+
+mat-list {
+  width: -webkit-calc(100% - 44px);
+  width: -moz-calc(100% - 44px);
+  width: calc(100% - 44px);
+  padding-left: 44px;
+
+  mat-list-item {
+    cursor: pointer;
+
+    .mat-h3 {
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  mat-list-item:hover {
+    background-color: $set-hover-track;
+  }
+
+  mat-list-item.track-playing {
+    background-color: $set-playing-track;
+  }
+}
+
+.track-avatar {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px 0 0
+}

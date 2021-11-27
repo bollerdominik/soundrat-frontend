@@ -1,0 +1,423 @@
+@import "../../../styles/variables";
+@import "landing-variables";
+
+.wave-divider_1 {
+  position: relative;
+  padding-top: calc(50px + 6vw);
+  padding-bottom: calc(50px + 6vw);
+
+  .img-wrap {
+    transform: translateY(0);
+    position: absolute;
+    top: 0;
+  }
+
+  img {
+    display: block;
+    width: 140%;
+  }
+
+  @media screen and (max-width: $tablet - 1) {
+    .img-wrap {
+      transform: translateY(-30%);
+    }
+
+    img {
+      width: 160%;
+      transform: translateX(-30%) scaleY(1.5);
+    }
+  }
+
+  @media screen and (max-width: $tablet_s - 1) {
+    img {
+      width: 270%;
+    }
+  }
+
+  animation: wave 100s infinite;
+}
+
+.wave-divider_2 {
+  position: relative;
+  z-index: -1;
+
+  .img-wrap {
+    transform: translateY(-40%);
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+
+  img {
+    display: block;
+    width: 140%;
+    transform: scaleY(-1);
+  }
+
+  @media screen and (max-width: $tablet - 1) {
+    img {
+      width: 160%;
+      transform: scaleY(-2);
+    }
+  }
+
+  @media screen and (max-width: $tablet_s - 1) {
+    img {
+      width: 270%;
+    }
+  }
+
+  animation: wave 100s infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-40%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.discover-section {
+  padding-top: 6em !important;
+}
+
+.for-fans {
+  padding-top: 4rem;
+
+  @media screen and (max-width: $desktop_s) {
+    padding-bottom: 4em;
+  }
+
+  &__wrap {
+    padding-top: 3.75rem;
+
+    @media screen and (min-width: $tablet_s) {
+      display: flex;
+      padding-top: 5.55rem;
+
+      > * {
+        width: 50%;
+      }
+    }
+  }
+
+  .main-title {
+    margin-bottom: 3.75rem;
+    z-index: 1;
+  }
+}
+
+.newest-artists {
+  &-section {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  &__btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (max-width: $tablet_s - 1) {
+
+  }
+
+  @media screen and (max-width: $mobile - 1) {
+    &__btn {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: $tablet_s) {
+    position: relative;
+
+    &__btn {
+      position: absolute;
+      top: 2.22rem;
+      left: 0;
+    }
+  }
+}
+
+.newest-artists-grid {
+  app-card {
+    cursor: pointer;
+    transition: 0.1s;
+  }
+
+  app-card:hover {
+    box-shadow: $btn-accent-shadow-hover;
+  }
+
+  @media screen and (max-width: $tablet_s - 1) {
+    margin-top: 3.375rem;
+
+    > * {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media screen and (min-width: $tablet_s) {
+    overflow: hidden;
+
+    > * {
+      float: left;
+    }
+
+    .g_1 {
+      width: 32%;
+    }
+
+    .g_2,
+    .g_1 {
+      margin-top: 16%;
+    }
+
+    .g_3 {
+      width: 40%;
+    }
+
+    .g_2,
+    .g_4,
+    .g_5 {
+      width: 24%;
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+
+    .g_4,
+    .g_5 {
+      margin-top: 2%;
+    }
+
+    .g_5 {
+      margin-left: 0;
+    }
+  }
+}
+
+.feedback {
+  padding: 5rem 0;
+
+  .btn__send {
+    font-size: 22px;
+    height: 2px;
+    line-height: 0;
+  }
+
+  .feedback__desc {
+    padding-right: 18px;
+    line-height: 26px;
+  }
+}
+
+.form {
+  position: relative;
+  padding: 40px 20px;
+  background-color: $background_transp;
+  border-radius: $border-radius * 2;
+  z-index: 2;
+
+  &__title {
+    margin-bottom: 18px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &__description {
+    margin-bottom: 2rem;
+    font-size: 16px;
+    opacity: .7;
+  }
+
+  &__inputs {
+    textarea {
+      min-height: 120px;
+      resize: none;
+    }
+
+    .mat-form-field {
+      display: block;
+    }
+
+    ::ng-deep {
+      .mat-form-field-flex {
+        padding: 0 19px 0 19px;
+      }
+
+      .mat-form-field-label {
+        font-size: 18px;
+        //margin-top: -11px;
+      }
+
+      .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+      .mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+        transform: translateY(-1.2em) scale(.75);
+      }
+
+      .mat-form-field-infix {
+        border-top: 5px solid transparent;
+        padding: 13px 0 13px 0;
+      }
+
+      .mat-form-field-label-wrapper {
+        top: -18px;
+      }
+
+      .mat-form-field-outline-start {
+        border-radius: 10px 0 0 10px;
+      }
+
+      .mat-form-field-outline-end {
+        border-radius: 0 10px 10px 0;
+      }
+    }
+
+    .mat-input-element {
+      font-size: 18px;
+    }
+
+    .form-btn {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media screen and (max-width: $tablet_s - 1) {
+    .b-1 {
+      .form-btn {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile - 1) {
+    &__inputs {
+      .form-btn {
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (min-width: $tablet_s) {
+    display: flex;
+
+    .b-1 {
+      width: 50%;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__description {
+      font-size: 18px;
+      margin-bottom: 70px;
+    }
+
+    &__inputs {
+      width: 50%;
+
+      .form-btn {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding: 60px 105px;
+  }
+}
+
+.main-footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  text-align: center;
+
+  &__navigation {
+    margin-bottom: 3rem;
+
+    li {
+      position: relative;
+      margin-bottom: 1.2rem;
+
+      a {
+        display: inline-block;
+        padding: .5rem;
+        color: $primary-text-color;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media screen and (max-width: $tablet_s - 1) {
+    li {
+      &:hover {
+        a {
+          opacity: .7;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $tablet_s) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    &__navigation {
+      display: flex;
+
+      li {
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          border-radius: 1px;
+          transform: scale(0);
+          background-color: $primary-text-color;
+          transition: transform .3s;
+        }
+
+        &:hover {
+          &::before {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+}
+
+.copyright {
+  &__logo {
+    display: inline-block;
+    width: 120px;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  &__text {
+    color: $primary-text-color;
+    opacity: .3;
+    font-size: .875rem;
+  }
+}
+
+

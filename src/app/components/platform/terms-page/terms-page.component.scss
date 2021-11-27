@@ -1,0 +1,20 @@
+@import "../../../../styles/variables";
+
+
+p {
+  line-height: 22px;
+  color: $color-light-grey;
+}
+
+ul {
+  color: $color-light-grey;
+}
+
+.full {
+  line-height: 22px !important;
+  .c3 {
+    padding-top: 1em;
+    display: block;
+  }
+
+}

@@ -1,0 +1,9 @@
+<app-image *ngIf="user.avatarFile"
+           [color]="user.avatarColor"
+           [size]="size"
+           [url]="user.avatarFile | fileUrl"
+></app-image>
+
+<canvas *ngIf="!user.avatarFile" [width]="size" [height]="size"
+        [attr.data-jdenticon-value]="user.id" style="display: block">
+</canvas>

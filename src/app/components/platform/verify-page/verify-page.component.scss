@@ -1,0 +1,55 @@
+@import "../../../../styles/variables";
+
+.mat-display-1 {
+  margin: 0 0 20px;
+}
+
+.mat-h2 {
+  color: $color-light-grey;
+}
+
+mat-radio-group {
+  display: grid;
+  grid-auto-flow: column;
+  grid-row-gap: 8px;
+  margin-bottom: 8px;
+}
+
+mat-card {
+  margin: 2em auto auto;
+  max-width: 500px;
+
+  @include card-border;
+
+  .form-row {
+    width: 100%;
+  }
+
+  .bank-button {
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+  }
+
+  .confirm {
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+  }
+
+}
+
+.spinner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  display: inline-block;
+  position: relative;
+}

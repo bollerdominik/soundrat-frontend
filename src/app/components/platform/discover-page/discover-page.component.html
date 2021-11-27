@@ -1,0 +1,27 @@
+<div class="discover" infiniteScroll
+     [infiniteScrollDisabled]="miniMode"
+     (scrolled)="onLoadMore()">
+  <h1 class="mat-h1">Featured music</h1>
+  <app-posts [posts]="posts" context="DISCOVER" ></app-posts>
+</div>
+
+<div class="side">
+  <small class="mat-small">🔥 Trending Artists</small>
+
+  <ng-container *ngIf="artists$ | async as artists" >
+    <div class="scrolling-wrapper-flexbox">
+      <ng-container *ngFor="let artist of artists | slice:0: miniMode ? 8 : artists.length;">
+        <div class="trending"  [routerLink]="['/' + artist.userRoute]"
+             [state]="{user: artist}">
+          <app-image [url]="artist.avatarFile | fileUrl" [color]="artist.avatarColor"
+                     [size]="70"></app-image>
+          <div class="artist">
+            <h3 class="mat-h3 artist-name">{{artist.name}}</h3>
+            <button mat-stroked-button class="support-button">Support</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+</div>

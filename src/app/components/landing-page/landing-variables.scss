@@ -1,0 +1,35 @@
+$background: #19191e;
+
+//**************************
+//***** LANDING START ******
+//**************************
+
+$danger: #da3468;
+$black: #000000;
+$background_transp: rgba(25, 25, 30, .92);
+$background_text: rgb(52, 52, 68);
+$background_gradient: linear-gradient(-3deg, $background 20%, #2c2d34 50%, $background 80%);
+
+$mob-nav: #25262b;
+$text-border: #ace5ff;
+$card-status: $danger;
+$card-title: $black;
+
+$btn-filled-bg: linear-gradient(180deg, #1c3a49 0%, #1c4659 100%);
+$btn-filled-shadow: 0 1px 10px rgba(60, 180, 237, .34);
+
+$btn-accent-bg: linear-gradient(97.74deg, #ff4e85 11.91%, #d93367 83.84%);
+$btn-accent-bg-r: linear-gradient(277deg, #ff4e85 11.91%, #d93367 83.84%);
+$btn-accent-shadow: 0 1px 10px rgba(217, 51, 103, .46);
+$btn-accent-shadow-hover: 0 0 18px rgba(217, 51, 103, .8);
+
+$mobile: 576px;
+$tablet_s: 768px;
+$tablet: 992px;
+$desktop_s: 1200px;
+$desktop: 1400px;
+
+//**************************
+//***** LANDING END ********
+//**************************
+

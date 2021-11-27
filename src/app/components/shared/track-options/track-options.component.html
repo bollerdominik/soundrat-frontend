@@ -1,0 +1,17 @@
+<div class="options-row">
+  <button mat-icon-button aria-label="edit" *ngIf="showEdit" (click)="onEditClicked()">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Like track" (click)="onLikeClicked()">
+    <mat-icon [class.liked]=liked>favorite</mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Download" *ngIf="showDownload" (click)="onDownloadButtonClicked()">
+    <mat-icon>save_alt</mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Share" (click)="onShareButtonClicked()">
+    <mat-icon>share</mat-icon>
+  </button>
+</div>

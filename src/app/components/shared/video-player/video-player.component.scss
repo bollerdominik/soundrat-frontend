@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.track-avatar {
+  width: 100px;
+  height: 100px;
+}
+
+.track-player {
+  flex: 1;
+  padding-left: 1em;
+
+  youtube-player::ng-deep {
+    padding-top: 4px;
+    display: block;
+    width: 100%;
+    iframe {
+      width: 100%;
+      height: 289px;
+      border-radius: 8px;
+    }
+  }
+}

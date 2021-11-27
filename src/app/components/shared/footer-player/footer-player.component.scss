@@ -1,0 +1,132 @@
+@import "../../../../styles/variables";
+
+.toolbar-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.timestamp {
+  width: 34px;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+}
+
+.progress-slider {
+  flex: 1;
+  margin-left: 4px;
+  margin-right: 4px;
+  @media screen and (max-width: 500px) {
+
+    width: 70px;
+    display: none;
+
+  }
+}
+
+.toolbar-top {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 35px;
+  margin: 0;
+  background: rgba($toolbar-color, 0.95);
+  animation: fadeInUp 0.5s;
+  box-shadow: 0px -2px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.toolbar {
+  display: flex;
+  height: 64px;
+  margin: 0;
+  background: rgba($toolbar-color, 0.95);
+  animation: fadeInUp 0.5s;
+  box-shadow: 0px -2px 5px 0px rgba(0, 0, 0, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  @media screen and (max-width: 500px) {
+    box-shadow: none;
+    border-top: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 40px, 0);
+    opacity: 0
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
+
+.volume {
+  float: right;
+  position: relative;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+}
+
+.volume-slider {
+  position: absolute;
+  left: -5px;
+  bottom: 32px;
+}
+
+.playing-track {
+  :hover {
+    cursor: pointer;
+    color: white;
+  }
+
+  display: flex;
+  width: 310px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px 0 0
+  }
+
+  .track-detail {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+video {
+  display: none;
+}
+
+.border-progress-bar {
+  animation: fadeIn 0.5s;
+}
+
+.toolbar-top-slider {
+  flex: 1;
+  margin-left: 4px;
+  margin-right: 4px;
+}

@@ -1,0 +1,74 @@
+@import "../../../../styles/variables";
+
+
+:host {
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
+.discover {
+  flex: 1;
+  max-width: 100%;
+}
+
+.side {
+  min-width: 250px;
+  padding-left: 32px;
+
+  .trending {
+    padding-top: 16px;
+    display: flex;
+
+    app-image {
+      width: 70px;
+      height: 70px;
+      cursor: pointer;
+    }
+
+    .artist {
+      padding-left: 6px;
+
+      :hover {
+        cursor: pointer;
+        color: $primary;
+        text-shadow: 0 0 10px $primary;
+      }
+
+      .artist-name {
+        line-height: 1.1;
+        margin-bottom: 8px;
+        padding-top: 4px;
+        padding-left: 4px;
+      }
+
+      .support-button {
+        margin-left: 4px;
+        margin-top: 2px;
+        line-height: 1;
+        height: 30px;
+        background-color: rgba(233, 30, 99, 0.2);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .side {
+    padding-left: 0;
+    padding-bottom: 24px;
+  }
+  .scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .trending {
+      margin-right: 30px;
+    }
+  }
+}
+

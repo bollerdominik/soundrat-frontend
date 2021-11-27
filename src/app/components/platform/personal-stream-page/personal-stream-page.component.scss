@@ -1,0 +1,21 @@
+h2 {
+  color: #999;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+.not_found {
+  text-align: center;
+
+  mat-icon {
+    color: #999;
+    width: 96px;
+    font-size: 96px;
+    height: 96px;
+    margin-bottom: 16px;
+  }
+}

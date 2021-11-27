@@ -1,0 +1,62 @@
+<app-alert *ngIf="from && !support">
+  Sign up now to perform this action
+</app-alert>
+
+
+<app-alert *ngIf="support">
+  Sign up now and support {{support}}!
+</app-alert>
+
+<mat-card class="centered-card">
+
+  <h2 class="mat-h2">{{!showSecondForm ? 'Register' : 'Setup your profile'}}</h2>
+
+  <form [formGroup]="formGroup">
+    <mat-card-content>
+      <mat-form-field class="form-row" appearance="outline" *ngIf="showSecondForm">
+        <mat-label>Add your username</mat-label>
+        <input matInput type="text" placeholder="My amazing name ✨" formControlName="name">
+      </mat-form-field>
+
+      <ng-container *ngIf="!showSecondForm">
+
+        <mat-form-field class="form-row" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required placeholder="your@email.com">
+          <mat-error *ngIf="formGroup.get('email').invalid">{{getEmailError()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-row" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput required type="password" placeholder="Password" formControlName="password">
+        </mat-form-field>
+
+        <mat-form-field class="form-row" appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input matInput required type="password" formControlName="confirmPassword">
+        </mat-form-field>
+        <mat-error *ngIf="formGroup.get('password').touched &&
+       formGroup.get('confirmPassword').touched && formGroup.errors?.passwordMismatch">Password does not match
+        </mat-error>
+      </ng-container>
+
+    </mat-card-content>
+    <button mat-raised-button color="primary" class="form-row" type="submit" (click)="register()">
+      {{!showSecondForm ? 'Create Account' : 'Save Profile'}}
+    </button>
+    <div class="form-hint">
+      <small class="mat-small">By creating an account you agree to our
+        <a routerLink="/terms">terms and conditions</a>
+      </small>
+    </div>
+
+    <div class="card-divider">
+      <div></div>
+      <p class="mat-small">Already have an account?</p>
+      <div></div>
+    </div>
+
+    <button style="width: 100%" mat-button type="button" routerLink="/login" queryParamsHandling="preserve">Login
+    </button>
+  </form>
+</mat-card>

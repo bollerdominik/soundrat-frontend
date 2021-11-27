@@ -1,0 +1,18 @@
+<app-audio-player [collection]="collection"
+                  [track]="selectedTrack"
+                  [context]="context">
+  <ng-content></ng-content>
+</app-audio-player>
+
+<mat-list>
+  <mat-list-item *ngFor="let track of collection.tracks"
+                 (mouseenter)="onHoverTrack(track)"
+                 [class.track-playing]="isPlayingTrack(track)"
+                 (click)="onPlayItemClicked(track)">
+    <app-image class="track-avatar small-image" [url]="track.coverFile | fileUrl"
+               [color]="track.coverColor"
+               [size]="40"
+    ></app-image>
+    <h3 class="mat-h3">{{track.title}}</h3>
+  </mat-list-item>
+</mat-list>

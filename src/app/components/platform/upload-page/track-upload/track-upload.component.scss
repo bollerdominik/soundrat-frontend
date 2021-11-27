@@ -1,0 +1,78 @@
+@import "../../../../../styles/variables";
+
+.mat-card {
+  max-width: 700px;
+  margin: auto;
+  overflow: hidden;
+  @include card-border;
+
+  .progress {
+    display: flex;
+
+    .status {
+      min-width: 100px;
+    }
+
+    .progress-bar {
+      padding-top: 8px;
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 8px;
+
+    .cover {
+      width: 250px;
+      height: 250px;
+      margin-right: 1em;
+      position: relative;
+      margin-bottom: 8px;
+
+      .cover-artwork {
+        width: 250px;
+        height: 250px;
+      }
+
+      input {
+        display: none;
+      }
+
+      .placeholder-image {
+        background-image: linear-gradient(135deg, #bdc3c7, #2c3e50);
+        display: inline-block;
+        width: 250px;
+        height: 250px;
+        border-radius: $border-radius;
+      }
+
+      .avatar-button {
+        background-color: #424242d6;;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .text-input {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .form-row {
+      width: 100%;
+    }
+  }
+
+  .actions {
+    margin-top: 1em;
+    float: right;
+  }
+
+  .song-button {
+    width: 100%;
+    margin-top: 1em;
+  }
+}

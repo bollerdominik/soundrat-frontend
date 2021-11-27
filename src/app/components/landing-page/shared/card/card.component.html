@@ -1,0 +1,15 @@
+<div class="card">
+  <img *ngIf="data.img" class="img" src="assets/images/{{ data.img }}" alt="{{ data.title }}">
+  <div class="outer">
+    <span *ngIf="!data.img" class="get-featured">Sign up now
+      <br>and get
+      <br>featured!</span>
+  </div>
+  <div class="footer" [ngClass]="{'footer--small': !data.status}">
+  <span class="footer__status" *ngIf="data.status">
+    <span class="icon-fire"></span>
+    <span>{{ data.status }}</span>
+  </span>
+    <span class="footer__title">{{ data.title }}</span>
+  </div>
+</div>

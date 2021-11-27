@@ -1,0 +1,21 @@
+@import "../../../../styles/variables";
+
+.options-row {
+  margin-top: 36px;
+}
+
+.liked {
+  color: $primary !important;
+}
+
+@media screen and (max-width: 548px) {
+  .options-row {
+    margin-top: 8px;
+  }
+}
+
+button {
+  .mat-icon {
+    color: $color-light-grey;
+  }
+}

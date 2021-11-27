@@ -1,0 +1,19 @@
+@import "../../../../styles/variables";
+
+.lyrics {
+  margin-bottom: 48px;
+  @include card-border;
+
+  .collapsed {
+    height: 150px;
+    overflow: hidden;
+  }
+
+  .fade {
+    position: relative;
+    height: 140px;
+    bottom: 155px;
+    margin-bottom: -140px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0) 0%, #25262c 100%)
+  }
+}

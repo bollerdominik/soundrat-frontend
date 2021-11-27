@@ -1,0 +1,20 @@
+<h1 class="mat-h1">Upload your music</h1>
+
+<div class="upload-options">
+  <input #file type="file"
+         id="file"
+         accept="audio/*"
+         multiple
+         (change)="handleFileInput($event)">
+  <div class="actions" *ngIf="uploads.length == 0">
+    <button class="upload-button" mat-raised-button (click)="file.click()" color="primary">Upload Songs</button>
+    <button class="upload-button" mat-raised-button routerLink="/upload/album" color="primary">Upload Album</button>
+  </div>
+  <app-track-upload *ngFor="let upload of uploads" [upload]="upload"></app-track-upload>
+  <button class="more-upload-button" *ngIf="uploads.length > 0" mat-stroked-button (click)="file.click()">
+    <mat-icon class="button-icon">add</mat-icon>
+    Upload more songs
+  </button>
+
+</div>
+

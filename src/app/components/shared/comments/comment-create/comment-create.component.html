@@ -1,0 +1,5 @@
+<mat-form-field appearance="standard" class="comment-input-field" (click)="onCommentFieldClicked()">
+  <mat-label>Leave a comment</mat-label>
+  <textarea matInput #comment></textarea>
+</mat-form-field>
+<button mat-button class="submit-button" (click)="onCommentSubmitClicked(comment)">Submit</button>

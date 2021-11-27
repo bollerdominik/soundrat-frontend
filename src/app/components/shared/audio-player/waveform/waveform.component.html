@@ -1,0 +1,13 @@
+<div id="wrapper" (mouseout)="onMouseOut()" (click)="onProgressChanged($event.clientX)">
+
+  <div id="mouse-pointer" *ngIf="mouseOverXPosition" [style.left]="mouseOverXPosition + 'px'"></div>
+
+  <div id="progress" [hidden]="inactive" [style.width]="progress + '%'">
+    <canvas id="progressCanvas" #progressCanvas></canvas>
+  </div>
+
+  <div id="background">
+    <canvas id="backgroundCanvas" #backgroundCanvas [ngClass]="{active: !inactive, inactive: inactive}"></canvas>
+  </div>
+
+</div>

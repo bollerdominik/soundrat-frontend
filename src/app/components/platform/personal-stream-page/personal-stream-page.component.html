@@ -1,0 +1,32 @@
+<h1 class="mat-h1">Your stream</h1>
+
+<mat-tab-group (selectedTabChange)="onTabChange($event)">
+  <mat-tab label="Following">
+    <ng-template matTabContent>
+    <div class="personal" infiniteScroll
+         (scrolled)="onLoadMore()">
+      <h2 class="mat-h2">  Latest music from the people you’re following
+      </h2>
+      <app-posts [posts]="posts" context="USER_FOLLOWINGS" ></app-posts>
+      <div *ngIf="posts?.length == 0" class="not_found">
+        <mat-icon>search_off</mat-icon>
+        <p class="mat-small" >You are not following any artists yet. <a routerLink="/discover">Discover new artists</a></p>
+      </div>
+    </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Likes">
+    <ng-template matTabContent>
+    <div class="personal" infiniteScroll
+         (scrolled)="onLoadMore()">
+      <h2 class="mat-h2">  Your liked music
+      </h2>
+      <app-posts [posts]="posts" context="USER_LIKES" ></app-posts>
+      <div *ngIf="posts?.length == 0" class="not_found">
+        <mat-icon>search_off</mat-icon>
+        <p class="mat-small" >You have no liked music yet. <a routerLink="/discover">Discover new music</a></p>
+      </div>
+    </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

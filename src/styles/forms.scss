@@ -1,0 +1,39 @@
+@import "src/styles/variables";
+
+.centered-card {
+  margin: 2em auto auto;
+  max-width: 500px;
+
+  @include card-border;
+
+  .form-row {
+    width: 100%;
+  }
+}
+
+.card-divider {
+  display: flex;
+  align-items: center;
+
+  margin-top: 2em;
+  margin-bottom: 1em;
+
+  > div {
+    flex: 1 0 auto;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0 5px;
+  }
+
+  > p {
+    align-self: center;
+  }
+}
+
+.form-hint {
+  text-align: center;
+  margin-top: 6px;
+  a {
+    text-decoration: underline
+  }
+}

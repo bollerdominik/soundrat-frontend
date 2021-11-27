@@ -1,0 +1,23 @@
+@import "../../../../styles/variables";
+
+:host {
+  @include card-border;
+  margin: 1em auto auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  max-width: 500px;
+
+  text-align: center;
+  border-color: aqua;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 1px #00ffff24;
+  background-color: #00ffff24;
+  display: block;
+  p {
+    padding-bottom: 1em;
+    padding-top: 1em;
+    line-height: 18px;
+    font-weight: 500;
+  }
+}

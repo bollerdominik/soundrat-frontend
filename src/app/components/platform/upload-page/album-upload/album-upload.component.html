@@ -1,0 +1,99 @@
+<mat-card>
+  <form class="form">
+    <div class="cover">
+      <span class="placeholder-image" *ngIf="!image"></span>
+      <button class="avatar-button" mat-flat-button (click)="file.click()" type="button">Upload Image</button>
+      <img class="cover-artwork" *ngIf="image" [src]="image">
+      <input #file type="file"
+             id="file"
+             accept="image/*"
+             multiple
+             (change)="imageInput($event)">
+    </div>
+
+    <div class="text-input">
+      <mat-form-field class="form-row">
+        <input matInput placeholder="Title" required name="title" [(ngModel)]="createCollectionRequest.title">
+      </mat-form-field>
+
+      <mat-form-field class="form-row">
+        <textarea matInput placeholder="Description" name="description"
+                  [(ngModel)]="createCollectionRequest.description"></textarea>
+      </mat-form-field>
+
+      <mat-radio-group name="privacy" [(ngModel)]="createCollectionRequest.privacy">
+        <mat-radio-button color="primary" value="PUBLIC" style="margin-right: 1em">Public</mat-radio-button>
+        <mat-radio-button color="primary" value="PRIVATE">Private</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="tracks form-row">
+      <div cdkDropList class="drop-class" (cdkDropListDropped)="onElementDropped($event)">
+        <div class="track" *ngFor="let albumTrack of albumTracks">
+          <span class="set-number">{{albumTrack.position}}.</span>
+          <div cdkDrag class="draggable-container" cdkDragBoundary=".drop-class">
+            <mat-form-field class="selected-input" *ngIf="albumTrack.selectedTrack">
+              <input matInput
+                     placeholder="Select song"
+                     [matAutocomplete]="auto"
+                     [value]="getTrack(albumTrack.selectedTrack.trackId).title"
+                     #selected>
+              <mat-icon matSuffix style="cursor: pointer" (click)="removeTrack(albumTrack.position, selected)">clear
+              </mat-icon>
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="changeTrack($event, albumTrack.position)">
+                <mat-option *ngFor="let track of getFilteredTracks(selected.value)" [value]="track.title"
+                            [id]="track.id.toString()">
+                  <img class="auto-img" aria-hidden="true" [src]="track.coverFile | fileUrl" height="25">
+                  <span>{{track.title}}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field *ngIf="albumTrack.newTrack" class="form-row new-track">
+              <mat-label>New upload</mat-label>
+              <input name="newTrack" matInput [value]="albumTrack.newTrack.title"
+                     (input)="changeNewTrackTitle(newTrack, albumTrack)"
+                     #newTrack placeholder="Add a title to your song">
+              <mat-icon matSuffix style="cursor: pointer" (click)="removeTrack(albumTrack.position, newTrack)">clear
+              </mat-icon>
+              <mat-progress-bar [mode]="albumTrack.newTrack.progress < 100 ? 'indeterminate': 'determinate'"
+                                [value]="albumTrack.newTrack.progress"></mat-progress-bar>
+            </mat-form-field>
+            <mat-icon class="drag-icon" cdkDragHandle [cdkDragHandleDisabled]="hasUnprocessedTracks()"
+                      (click)="onDragHandleClicked()">drag_handle</mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="track" *ngIf="existingTracks?.length > 0">
+        <span class="set-number">{{this.albumTracks.length + 1}}.</span>
+        <mat-form-field class="form-row">
+          <input matInput
+                 placeholder="Select song"
+                 #inputElement
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onTrackSelected($event, inputElement)">
+            <mat-option *ngFor="let track of getFilteredTracks(inputElement.value)" [value]="track.title"
+                        [id]="track.id.toString()">
+              <img class="auto-img" aria-hidden="true" [src]="track.coverFile | fileUrl" height="25">
+              <span>{{track.title}}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <input #trackFile type="file"
+             style="display: none"
+             id="trackInput"
+             accept="audio/*"
+             multiple
+             (change)="onTrackInput($event)">
+      <button mat-stroked-button (click)="trackFile.click()" style="margin-top: -24px">Upload new songs</button>
+    </div>
+    <div class="actions">
+      <button mat-stroked-button color="warn" *ngIf="this.collectionIdToEdit > 0" (click)="onDeleteAlbum()">
+        Delete
+      </button>
+      <button mat-raised-button color="primary" (click)="onSaveClicked()">
+        Save Album</button>
+    </div>
+  </form>
+</mat-card>

@@ -1,0 +1,22 @@
+.title {
+  margin-bottom: 1em;
+}
+
+mat-card {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin-right: 1em;
+  }
+
+  .cancel-button {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 50px;
+  }
+}

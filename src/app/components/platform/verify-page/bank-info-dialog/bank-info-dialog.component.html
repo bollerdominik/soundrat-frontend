@@ -1,0 +1,15 @@
+<h2 class="mat-h2">How to receive payments to your bank</h2>
+
+<p>We use the established payment provider <a href="https://stripe.com">Stripe</a>
+  to securely send payments from your fans to your bank account</p>
+
+<br>
+<ul>
+  <li class="step">1. Click the "Receive payments to your bank" button and create an account with Stripe</li>
+  <li class="step">2. If asked what type of Business you are select "Individual" (Unless you already own a different type of Business)</li>
+  <li class="step">3. Select "Musicians, bands, or orchestras" as your industry</li>
+  <li *ngIf="user" class="step">4. Enter SoundRat.com/{{user.userRoute}} as the "Business website" for this account</li>
+  <li class="step">5. Complete the form and link your account</li>
+</ul>
+
+<small class="mat-small">Need help setting up your Stripe account? Contact <a href="mailto:hey@soundrat.com">hey@soundrat.com</a></small>

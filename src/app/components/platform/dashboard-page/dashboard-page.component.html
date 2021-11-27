@@ -1,0 +1,48 @@
+<h1 class="mat-display-1">📈 Dashboard</h1>
+<h2 class="mat-h2 sub-title">See your supporters and payments made to you</h2>
+
+<app-alert *ngIf="!supporters || supporters?.length == 0">
+  No payments received - Let your fans know to support you on SoundRat!
+</app-alert>
+
+<section class="amount">
+  <p class="mat-small sub-title">Total amount received</p>
+  <h2 class="mat-display-1">0 USD</h2>
+</section>
+
+<section class="copy-link">
+  <mat-form-field>
+    <mat-label>Share your profile link with your fans</mat-label>
+    <input matInput value="https://soundrat.com/{{currentUser?.userRoute}}" readonly>
+    <mat-icon matSuffix (click)="copyProfileLink()">content_copy</mat-icon>
+  </mat-form-field>
+</section>
+
+<section class="trending">
+  <p class="mat-small sub-title">Get featured on the trending page</p>
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <mat-icon mat-list-icon>share</mat-icon>
+      1. Share your profile on your social media
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <mat-icon mat-list-icon>loyalty</mat-icon>
+      <h4>
+        2. Tag SoundRat on <a href="https://www.instagram.com/sound.rat/" target="_blank">Instagram</a>, <a
+        href="https://www.facebook.com/SoundRat-102824711441643" target="_blank">Facebook</a> or
+        <a target="_blank">Twitter</a>
+      </h4>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <mat-icon mat-list-icon>stars</mat-icon>
+      <h4>
+        3. We will highlight your profile on the <a routerLink="/discover">trending page</a>
+      </h4>
+    </mat-list-item>
+  </mat-list>
+</section>
+
+
+<app-supporter-card *ngFor="let subscription of supporters" [subscription]="subscription">
+</app-supporter-card>
+

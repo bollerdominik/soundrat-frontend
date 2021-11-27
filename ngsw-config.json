@@ -1,0 +1,68 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-performance",
+      "urls": [
+        "https://api.soundrat.com"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "1s",
+        "maxSize": 100,
+        "maxAge": "5d"
+      }
+    },
+    {
+      "name": "media-performance",
+      "urls": [
+        "**/*.{mp3,m4a,m3u8,json}"
+      ],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 1000,
+        "maxAge": "7d"
+      }
+    },
+    {
+      "name": "files-performance",
+      "urls": [
+        "https://files.soundrat.com",
+        "!**/*.{mp3,m4a,m3u8,json}"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "1s",
+        "maxSize": 200,
+        "maxAge": "1d"
+      }
+    }
+  ]
+}

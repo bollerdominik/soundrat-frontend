@@ -1,0 +1,43 @@
+@import "../styles/variables";
+
+app-toolbar.landing::ng-deep {
+  .toolbar {
+    background-color: transparent;
+    position: absolute;
+    box-shadow: none;
+    border-bottom: none;
+  }
+
+}
+
+app-toolbar:not(.landing) {
+  ::ng-deep.navigation {
+    display: none;
+  }
+}
+
+app-toolbar.landing {
+  ::ng-deep.main-navigation {
+    display: none;
+  }
+}
+
+.main-container {
+  background-color: $container-background;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1em;
+  min-height: calc(100vh - 128px);
+
+  .inner-main {
+    margin-bottom: 64px;
+  }
+}
+
+.footer-player {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
+}

@@ -1,0 +1,26 @@
+<section class="header" *ngIf="trackCollection" [style.background]="trackCollection.coverColor | colorGradient">
+  <app-collection-player [collection]="trackCollection">
+    <app-track-options [showDownload]="false" [showEdit]="canEdit"
+                       [liked]="liked"
+                       (likeClicked)="onLikeClicked($event)"
+                       (editClicked)="onEditClicked()"
+
+    ></app-track-options>
+  </app-collection-player>
+</section>
+
+<mat-divider style="margin-top: 26px"></mat-divider>
+
+<section class="content" *ngIf="user">
+
+  <app-artist [user]="user"></app-artist>
+
+  <div class="container">
+    <div class="comment-container">
+      <app-comments *ngIf="comments$ | async as comments" [comments]="comments"></app-comments>
+      <app-comment-create [user]="user" [trackCollection]="trackCollection"
+                          (reloadCommentChange)="loadComments(trackCollection)"></app-comment-create>
+    </div>
+  </div>
+
+</section>

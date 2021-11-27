@@ -1,0 +1,23 @@
+.dialog {
+  max-width: 390px;
+
+  .form-row {
+    width: 100%;
+  }
+
+  .secondary-button {
+    margin-bottom: 1em;
+  }
+
+  .social-media-options {
+    max-width: 100px;
+  }
+
+  .error-field {
+    color: #ff2a2a;
+    margin-top: -14px;
+    display: block;
+    margin-bottom: 12px;
+  }
+}
+

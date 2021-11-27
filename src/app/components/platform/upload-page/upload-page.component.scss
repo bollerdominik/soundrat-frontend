@@ -1,0 +1,36 @@
+h1 {
+  margin-bottom: 24px;
+}
+
+.upload-options {
+  input[type="file"] {
+    display: none;
+  }
+
+  .actions {
+    display: grid;
+    grid-row-gap: 1em;
+    max-width: 400px;
+    margin: auto;
+
+    .upload-button {
+      height: 80px;
+      font-size: 16px;
+    }
+  }
+
+  app-track-upload {
+    margin-bottom: 1em;
+    display: block;
+  }
+
+  .more-upload-button {
+    .button-icon {
+      margin-right: 8px;
+    }
+
+    display: block;
+    margin: auto;
+  }
+}
+
