@@ -50,8 +50,6 @@ $mat-dark-grey: (
 $candy-app-primary: mat.define-palette(mat.$pink-palette);
 $candy-app-accent: mat.define-palette($mat-dark-grey, 800);
 
-// Create the theme object (a Sass map containing all of the palettes).
-$candy-app-theme: mat.define-palette($candy-app-primary, $candy-app-accent);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
